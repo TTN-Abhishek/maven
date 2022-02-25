@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ttn</groupId>
+  <artifactId>day11-que1</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <dependencies>
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.13.2</version>
+	</dependency>
+	
+	<dependency>
+    <groupId>biz.aQute.bnd</groupId>
+    <artifactId>biz.aQute.bndlib</artifactId>
+    <version>6.1.0</version>
+</dependency>
+
+	
+	
+  </dependencies>
+	
+
+  <repositories>
+
+		<repository>
+			<id>java-net-repo</id>
+			<url>https://maven.java.net/content/repositories/public/</url>
+		</repository>
+
+		<repository>
+			<id>jboss-repo</id>
+			<url>https://repository.jboss.org/nexus/content/group/public</url>
+		</repository>
+  
+  		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>>https://repo.maven.apache.org/maven2</url>
+		</repository>
+
+  </repositories>
+
+  <pluginRepositories>
+  	<pluginRepository>
+		<releases>
+		<updatePolicy>never</updatePolicy>
+		</releases>
+		<snapshots>
+			<enabled>false</enabled>
+		</snapshots>
+		<id>centeral</id>
+		<name>Centeral Repository</name>
+		<url>https://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+
+  <build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<mainfest> 
+							<mainClass>com.ttn</mainClass>
+						</mainfest>
+					</archive>
+					<descriptorRefs>
+						<discriptorRefs>jar-with-dependencies</discriptorRefs>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-gpg-plugin</artifactId>
+    			<version>3.0.1</version>
+				<configuration><archive><mainfestFile>${project.build.outputDirectory}/META-INF/MAINFEST.MF</mainfestFile></archive></configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>biz.aQute.bnd</groupId>
+			    <artifactId>biz.aQute.bndlib</artifactId>
+			    <version>6.1.0</version>
+				<executions><execution><goals><goal>bnd-process</goal></goals></execution></executions>
+			</plugin>
+		</plugins>
+		
+	<resources>
+		<resource>
+			<directory>/day11-que1/tagret</directory>
+			<excludes>
+				<exclude>/day11-que1/tagret</exclude>
+			</excludes>
+		</resource>
+	</resources>
+  </build>
+
+  
+</project>
+
